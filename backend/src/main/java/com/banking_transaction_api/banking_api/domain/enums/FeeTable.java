@@ -24,14 +24,14 @@ public enum FeeTable {
         this.percentageAmount = percentageAmount;
     }
 
-    public static BigDecimal calculateFee(long diffDays, BigDecimal value) {
+    public static BigDecimal calculateFee(long diffDays, BigDecimal amount) {
         FeeTable range = Arrays.stream(values())
                 .filter(t -> diffDays >= t.minDay && diffDays <= t.maxDay)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No fee applicable for this difference in days."));
 
-        BigDecimal percentageValue = value.multiply(range.percentageAmount);
-        BigDecimal totalFee = range.fixedAmount.add(percentageValue);
+        BigDecimal percentageAmount = amount.multiply(range.percentageAmount);
+        BigDecimal totalFee = range.fixedAmount.add(percentageAmount);
 
         return totalFee.setScale(2, RoundingMode.HALF_UP);
     }

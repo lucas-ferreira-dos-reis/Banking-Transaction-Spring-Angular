@@ -28,7 +28,7 @@ public class Transfer {
     private String destinationAccount;
 
     @Column(nullable = false)
-    private BigDecimal value;
+    private BigDecimal amount;
 
     @Column(nullable = false)
     private BigDecimal fee;

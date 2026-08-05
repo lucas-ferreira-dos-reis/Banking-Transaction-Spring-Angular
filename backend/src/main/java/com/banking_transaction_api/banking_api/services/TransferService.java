@@ -3,6 +3,7 @@ package com.banking_transaction_api.banking_api.services;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -22,6 +23,10 @@ public class TransferService {
 
     private final TransferRepository transferRepository;
 
+    public List<Transfer> findAll() {
+        return transferRepository.findAll();
+    }
+
     @Transactional
     public Transfer scheduleTransfer(TransferDto dto) {
         LocalDate creationDate = LocalDate.now();
@@ -35,7 +40,7 @@ public class TransferService {
 
         BigDecimal calculatedFee;
         try {
-            calculatedFee = FeeTable.calculateFee(diffDays, dto.getValue());
+            calculatedFee = FeeTable.calculateFee(diffDays, dto.getAmount());
         } catch (IllegalArgumentException e) {
             throw new BusinessException(e.getMessage());
         }
@@ -43,7 +48,7 @@ public class TransferService {
         Transfer transfer = Transfer.builder()
                 .sourceAccount(dto.getSourceAccount())
                 .destinationAccount(dto.getDestinationAccount())
-                .value(dto.getValue())
+                .amount(dto.getAmount())
                 .fee(calculatedFee)
                 .creationDate(creationDate)
                 .scheduleDate(scheduleDate)
