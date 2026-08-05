@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class TransferService {
     private readonly http = inject(HttpClient);
-    private readonly apiUrl = 'http://localhost:5000/transfers';
+    private readonly apiUrl = 'http://localhost:5000/api/transfers';
 
     findAll(): Observable<Transfer[]> {
         return this.http.get<Transfer[]>(this.apiUrl);

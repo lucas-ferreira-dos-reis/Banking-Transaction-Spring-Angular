@@ -5,5 +5,5 @@ export interface Transfer {
     amount: number;
     fee?: number;
     creationDate: string;
-    schedulingDate?: string;
+    scheduleDate?: string;
 }

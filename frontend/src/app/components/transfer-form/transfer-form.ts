@@ -12,14 +12,14 @@ import { TransferService } from '../../services/transfer';
 @Component({
     selector: 'app-transfer-form',
     imports: [
-        ReactiveFormsModule,
+        MatButtonModule,
         MatCardModule,
+        MatDatepickerModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule,
-        MatDatepickerModule,
         MatNativeDateModule,
         MatSnackBarModule,
+        ReactiveFormsModule,
     ],
     templateUrl: './transfer-form.html',
     styleUrl: './transfer-form.css',
