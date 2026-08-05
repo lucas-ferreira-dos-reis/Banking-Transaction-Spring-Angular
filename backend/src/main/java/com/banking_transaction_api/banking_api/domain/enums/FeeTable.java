@@ -28,7 +28,7 @@ public enum FeeTable {
         FeeTable range = Arrays.stream(values())
                 .filter(t -> diffDays >= t.minDay && diffDays <= t.maxDay)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No fee applicable for this difference in days."));
+                .orElseThrow(() -> new IllegalArgumentException("No fee applicable for this difference in days!"));
 
         BigDecimal percentageAmount = amount.multiply(range.percentageAmount);
         BigDecimal totalFee = range.fixedAmount.add(percentageAmount);

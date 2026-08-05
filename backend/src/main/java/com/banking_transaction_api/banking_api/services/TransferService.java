@@ -35,6 +35,9 @@ public class TransferService {
         if (scheduleDate.isBefore(creationDate)) {
             throw new BusinessException("The schedule date cannot be in the past!");
         }
+        if (dto.getSourceAccount().equals(dto.getDestinationAccount())) {
+            throw new BusinessException("The source account cannot be the same as the destination account!");
+        }
 
         long diffDays = ChronoUnit.DAYS.between(creationDate, scheduleDate);
 
