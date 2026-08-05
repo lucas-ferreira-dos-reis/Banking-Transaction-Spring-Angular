@@ -1,4 +1,4 @@
-package com.banking_transaction_api.banking_api.domain.model;
+package com.banking_transaction_api.banking_api.domain.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
