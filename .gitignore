@@ -1,0 +1,41 @@
+# ==========================================
+# Java / Spring Boot
+# ==========================================
+**/target/
+**/.mvn/
+HELP.md
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ==========================================
+# Node / Angular
+# ==========================================
+**/node_modules/
+**/dist/
+**/.angular/
+**/.sass-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# IDEs & Editors
+# ==========================================
+**/.idea/
+**/*.iml
+**/*.iws
+**/*.ipr
+**/.vscode/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ==========================================
+# OS
+# ==========================================
+.DS_Store
+Thumbs.db
