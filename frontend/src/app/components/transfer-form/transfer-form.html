@@ -1,0 +1,87 @@
+<mat-card class="form-card">
+    <mat-card-header>
+        <mat-card-title>Schedule Financial Transfer</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="transfer-form">
+            <div class="form-input-container">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Source Account</mat-label>
+                    <input
+                        matInput
+                        formControlName="sourceAccount"
+                        placeholder="10-digit account number"
+                        maxlength="10"
+                    />
+                    @if (transferForm.get('sourceAccount')?.hasError('required')) {
+                        <mat-error>Source account is required.</mat-error>
+                    }
+                    @if (transferForm.get('sourceAccount')?.hasError('pattern')) {
+                        <mat-error>Account must contain exactly 10 digits.</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Destination Account</mat-label>
+                    <input
+                        matInput
+                        formControlName="destinationAccount"
+                        placeholder="10-digit account number"
+                        maxlength="10"
+                    />
+                    @if (transferForm.get('destinationAccount')?.hasError('required')) {
+                        <mat-error>Destination account is required.</mat-error>
+                    }
+                    @if (transferForm.get('destinationAccount')?.hasError('pattern')) {
+                        <mat-error>Account must contain exactly 10 digits.</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Amount ($)</mat-label>
+                    <input
+                        matInput
+                        type="number"
+                        formControlName="amount"
+                        placeholder="0.00"
+                        min="0.01"
+                        step="0.01"
+                    />
+                    @if (transferForm.get('amount')?.hasError('required')) {
+                        <mat-error>Amount is required.</mat-error>
+                    }
+                    @if (transferForm.get('amount')?.hasError('min')) {
+                        <mat-error>Amount must be greater than zero.</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Transfer Date</mat-label>
+                    <input
+                        matInput
+                        [matDatepicker]="picker"
+                        formControlName="scheduledDate"
+                        placeholder="Choose a date"
+                    />
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    @if (transferForm.get('scheduledDate')?.hasError('required')) {
+                        <mat-error>Transfer date is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <div class="actions">
+                <button
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                    [disabled]="transferForm.invalid"
+                >
+                    Schedule Transfer
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,23 @@
+mat-card-header {
+    margin-bottom: 1.5em;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.transfer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.form-input-container {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+}
+
+.actions {
+    text-align: right;
+}
