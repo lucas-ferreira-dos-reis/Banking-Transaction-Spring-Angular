@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
 
-import com.banking_transaction_api.banking_api.exceptions.BusinessException;
-
 public enum FeeTable {
     SAME_DAY(0, 0, new BigDecimal("3.00"), new BigDecimal("0.025")),
     DAYS_1_TO_10(1, 10, new BigDecimal("12.00"), BigDecimal.ZERO),
@@ -30,7 +28,7 @@ public enum FeeTable {
         FeeTable range = Arrays.stream(values())
                 .filter(t -> diffDays >= t.minDay && diffDays <= t.maxDay)
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("No fee applicable for this difference in days."));
+                .orElseThrow(() -> new IllegalArgumentException("No fee applicable for this difference in days."));
 
         BigDecimal percentageValue = value.multiply(range.percentageAmount);
         BigDecimal totalFee = range.fixedAmount.add(percentageValue);

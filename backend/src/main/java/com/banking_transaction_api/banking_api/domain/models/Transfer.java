@@ -22,20 +22,20 @@ public class Transfer {
     private Long id;
 
     @Column(nullable = false, length = 10)
-    private String originAccount;
+    private String sourceAccount;
 
     @Column(nullable = false, length = 10)
-    private String targetAccount;
+    private String destinationAccount;
 
     @Column(nullable = false)
     private BigDecimal value;
 
     @Column(nullable = false)
-    private BigDecimal tax;
+    private BigDecimal fee;
 
     @Column(nullable = false)
     private LocalDate creationDate;
 
     @Column(nullable = false)
-    private LocalDate scheduledDate;
+    private LocalDate scheduleDate;
 }
