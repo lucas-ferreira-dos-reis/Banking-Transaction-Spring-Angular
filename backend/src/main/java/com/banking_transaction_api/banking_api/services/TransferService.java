@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.banking_transaction_api.banking_api.domain.dtos.TransferDto;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class TransferService {
 
     private final TransferRepository transferRepository;
+    private final SimpMessagingTemplate messagingTemplate;
 
     public List<Transfer> findAll() {
         return transferRepository.findAll();
@@ -57,7 +59,11 @@ public class TransferService {
                 .scheduleDate(scheduleDate)
                 .build();
 
-        return transferRepository.save(transfer);
+        Transfer savedTransfer = transferRepository.save(transfer);
+
+        messagingTemplate.convertAndSend("/topic/transfers", savedTransfer);
+
+        return savedTransfer;
     }
 
 }

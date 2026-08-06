@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,8 +29,6 @@ export class TransferForm {
     private transferService = inject(TransferService);
     private snackBar = inject(MatSnackBar);
 
-    readonly transferScheduled = output<void>();
-
     transferForm = this.fb.group({
         sourceAccount: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
         destinationAccount: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
@@ -52,7 +50,6 @@ export class TransferForm {
                         duration: 5000,
                     });
                     this.transferForm.reset();
-                    this.transferScheduled.emit();
                 },
                 error: (err) => {
                     const message = err.error?.message || 'Error scheduling transfer!';

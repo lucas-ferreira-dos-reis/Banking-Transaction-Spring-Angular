@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import type { Transfer } from '../../models/transfer.model';
 import { TransferService } from './../../services/transfer';
+import { WebSocketService } from '../../services/web-socket';
+import type { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-transfer-list',
@@ -14,6 +16,8 @@ import { TransferService } from './../../services/transfer';
 })
 export class TransferList {
     private readonly transferService = inject(TransferService);
+    private readonly webSocketService = inject(WebSocketService);
+    private wsSubscription!: Subscription;
     private snackBar = inject(MatSnackBar);
 
     readonly transfers = signal<Transfer[]>([]);
@@ -29,6 +33,18 @@ export class TransferList {
 
     ngOnInit() {
         this.loadTransfers();
+
+        this.wsSubscription = this.webSocketService.onNewTransfer().subscribe({
+            next: (newTransfer) => {
+                this.transfers.update((current) => [newTransfer, ...current]);
+            },
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.wsSubscription) {
+            this.wsSubscription.unsubscribe();
+        }
     }
 
     loadTransfers() {
