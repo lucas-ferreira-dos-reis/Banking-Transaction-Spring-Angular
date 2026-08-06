@@ -1,23 +1,47 @@
+.form-card {
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+}
+
 mat-card-header {
-    margin-bottom: 1.5em;
+    margin-bottom: 20px;
+}
+
+mat-card-title {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1.35rem;
+}
+
+.transfer-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.transfer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .full-width {
     width: 100%;
 }
 
-.transfer-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-}
-
-.form-input-container {
-    display: flex;
-    align-items: center;
-    gap: 3em;
-}
-
 .actions {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.actions button {
+    padding: 0 32px;
+    height: 48px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
 }
