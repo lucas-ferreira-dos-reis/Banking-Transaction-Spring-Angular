@@ -3,3 +3,9 @@
     flex-direction: column;
     gap: 2em;
 }
+
+.flex-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
