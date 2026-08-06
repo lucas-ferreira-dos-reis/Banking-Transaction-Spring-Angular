@@ -1,1 +1,126 @@
-<p>home-page works!</p>
+<div class="home-container">
+    <section class="hero-section">
+        <h1>Banking Transaction</h1>
+        <p class="subtitle">
+            Complete platform for scheduling financial transfers, featuring automatic calculation of
+            dynamic fees and real-time account statement updates.
+        </p>
+        <div class="hero-section-button-container">
+            <button mat-raised-button color="primary" routerLink="/transfers" class="cta-button">
+                <mat-icon>send</mat-icon>
+                Access Transfer System
+            </button>
+            <a
+                mat-raised-button
+                color="primary"
+                href="http://localhost:5000/api/swagger-ui/index.html"
+                target="_blank"
+                class="cta-button"
+            >
+                <mat-icon>send</mat-icon>
+                Access Swagger
+            </a>
+        </div>
+    </section>
+
+    <section class="features-grid">
+        <mat-card class="feature-card">
+            <mat-card-header>
+                <mat-icon mat-card-avatar color="primary">calculate</mat-icon>
+                <mat-card-title>Dynamic Fees</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Transfer scheduling fee calculation based on the number of days until the
+                    transfer date, following progressive financial rules.
+                </p>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card">
+            <mat-card-header>
+                <mat-icon mat-card-avatar color="primary">sync</mat-icon>
+                <mat-card-title>Real-Time Sync</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    WebSocket (STOMP/SockJS) integration that automatically updates the account
+                    statement for all connected users without requiring a page refresh.
+                </p>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card">
+            <mat-card-header>
+                <mat-icon mat-card-avatar color="primary">verified_user</mat-icon>
+                <mat-card-title>Fail-Fast & Validation</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Comprehensive request payload validation on both the frontend and backend,
+                    ensuring data consistency, preventing identical source and destination accounts,
+                    and providing global error handling.
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </section>
+
+    <section class="tech-section">
+        <h2>Technologies & Architecture</h2>
+
+        <div class="tech-grid">
+            <mat-card class="tech-card">
+                <mat-card-header>
+                    <mat-card-title>Backend Stack (details in the tooltip)</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-chip-set>
+                        @for (tech of backendTechs; track tech) {
+                            <mat-chip [matTooltip]="tech.tooltip">{{ tech.text }}</mat-chip>
+                        }
+                    </mat-chip-set>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="tech-card">
+                <mat-card-header>
+                    <mat-card-title>Frontend Stack</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-chip-set>
+                        @for (tech of frontendTechs; track tech) {
+                            <mat-chip>{{ tech }}</mat-chip>
+                        }
+                    </mat-chip-set>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h1>More Project & Contact</h1>
+
+        <div class="contact-section-button-container">
+            <a
+                mat-raised-button
+                color="primary"
+                href="https://github.com/lucas-ferreira-dos-reis"
+                target="_blank"
+                class="cta-button"
+            >
+                <mat-icon>send</mat-icon>
+                Github
+            </a>
+            <a
+                mat-raised-button
+                color="primary"
+                href="linkedin.com/in/lucas-ferreira-dos-reis-dev"
+                target="_blank"
+                class="cta-button"
+            >
+                <mat-icon>send</mat-icon>
+                Linkedin
+            </a>
+        </div>
+    </section>
+</div>
